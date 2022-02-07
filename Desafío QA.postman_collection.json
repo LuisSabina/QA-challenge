@@ -1,0 +1,742 @@
+{
+	"info": {
+		"_postman_id": "bbade68d-92ef-41b3-9f61-12df7fc3116e",
+		"name": "Desafío QA",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 endpoint posts validar status 200",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"the response is a json\"),function () {\r",
+							"    pm.response.to.be.json();\r",
+							"\r",
+							"}\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"//let jsonData = pm.response.json();\r",
+							"//pm.environment.set(\"userId\", jsonData.userId)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2 endpoint comments validar respuesta json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"the response is a json\"),function () {\r",
+							"    pm.response.to.be.json();\r",
+							"\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/comments",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3 endpoint pos validar status 404",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/pos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"pos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4 endpoint posts validar que cada objeto tenga userId",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"cada objeto tiene userId\", function () {\r",
+							"response.forEach(function(posteo){\r",
+							"    \r",
+							"    pm.expect(posteo).to.have.property(\"userId\"); \r",
+							"\r",
+							"    \r",
+							"});\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5 endpoint posts buscar si 2 posteos no tienen el mismo título",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"buscar si 2 posteos no tienen el mismo título\", function () {\r",
+							"let i = 0;\r",
+							"let j = 0;\r",
+							"while (i < response.length) {\r",
+							"\r",
+							"    let posteo = response[i];\r",
+							"    j=i+1;\r",
+							"    \r",
+							"      while (j < response.length) {\r",
+							"          \r",
+							"//console.log(posteo.title)\r",
+							"//console.log(response[j].title)\r",
+							"      pm.expect(posteo.title).not.eql(response[j].title);\r",
+							"       j++;\r",
+							"  \r",
+							"       }\r",
+							"  i++;\r",
+							"  \r",
+							"};\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6 endpoint posts/1  validar si devuelve un solo objeto y si el objeto tiene los atributos correctos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"var posteo = pm.response.json();\r",
+							"\r",
+							"//console.log(typeof(posteo))\r",
+							"\r",
+							"var keys = [];\r",
+							"for(var key in posteo)\r",
+							"{\r",
+							"    keys.push(key);\r",
+							"}\r",
+							"console.log(keys)\r",
+							"\r",
+							"pm.test(\"validar si el posteo traído tiene los atributos correctos\", function () {\r",
+							"    \r",
+							"  var atributos = [\"userId\",\"id\",\"title\",\"body\"]\r",
+							"\r",
+							"    var i=0\r",
+							"    while(i<atributos.length){  \r",
+							"    var j=i\r",
+							"        \r",
+							"            //console.log(keys[j])\r",
+							"            //console.log(atributos[i])\r",
+							"            \r",
+							"        pm.expect(keys[j]).to.eql(atributos[i]);\r",
+							"        //console.log(atributos)\r",
+							"       \r",
+							"    i++    \r",
+							"    }\r",
+							"    \r",
+							"    \r",
+							"  \r",
+							"      \r",
+							"});\r",
+							"\r",
+							"pm.test(\"validar si el posteo pedido es el posteo traído\", function () {\r",
+							"  \r",
+							"      pm.expect(posteo.id).to.eql(1);\r",
+							"      \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/posts/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"1"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "1",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7 endpoint posts/1  validar si devuelve el objeto creado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"validar si agrega un nuevo post\", function () {\r",
+							"  \r",
+							"      pm.expect(response.id).to.eql(101);\r",
+							"      \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"foo\",\r\n    \"body\": \"bar\",\r\n    \"userId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/posts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8 endpoint posts/1  validar si devuelve el objeto modificado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"validar si modifica un posteo\", function () {\r",
+							"  \r",
+							"      pm.expect(response.title).to.include(\"updated\");\r",
+							"      \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"title\", \"foo updated\");\r",
+							"pm.environment.set(\"body\", \"bar\");\r",
+							"pm.environment.set(\"orderId\", 2);\r",
+							"\r",
+							"const body = {\r",
+							"    \"title\": pm.environment.get(\"title\"),\r",
+							"    \"body\": pm.environment.get(\"body\"),\r",
+							"    \"userId\": pm.environment.get(\"userId\")\r",
+							"}\r",
+							"\r",
+							"pm.environment.set(\"body\", JSON.stringify(body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{{body}}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/posts/{{orderId}}",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts",
+						"{{orderId}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9 endpoint comments validar status 200 y validar tiempo de respuesta",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"//let jsonData = pm.response.json();\r",
+							"//pm.environment.set(\"userId\", jsonData.userId)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/comments",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"comments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10 endpoint users validar si hay 10 usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const response = pm.response.json();\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"validar si hay 10 usuarios\", function () {\r",
+							"  \r",
+							"      pm.expect(response.length).to.eql(10);\r",
+							"      \r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"//let jsonData = pm.response.json();\r",
+							"//pm.environment.set(\"userId\", jsonData.userId)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "11 endpoint users validar si cada usuario tiene todos los items necesarios en address",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Validar si cada usuario tiene todos los items necesarios en address\", function () {\r",
+							"    var users = JSON.parse(responseBody);  \r",
+							"   \r",
+							"    var addresses =[]\r",
+							"    for (var {name: n, address: a} of users) {\r",
+							"       addresses.push(a)    \r",
+							"    }\r",
+							"\r",
+							"    console.log(addresses)       \r",
+							"\r",
+							"    addresses.forEach(function(direccion){\r",
+							"      pm.expect(direccion).to.have.property(\"street\"); \r",
+							"      pm.expect(direccion).to.have.property(\"suite\");\r",
+							"      pm.expect(direccion).to.have.property(\"city\");\r",
+							"      pm.expect(direccion).to.have.property(\"zipcode\");\r",
+							"      pm.expect(direccion).to.have.property(\"geo\");\r",
+							"\r",
+							"    });\r",
+							"\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							" /*       for (var {name: n, address: {street: s}} of users) {\r",
+							"\r",
+							"  console.log('Name: ' + n + ', Street: ' + s);\r",
+							"} */\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"//let jsonData = pm.response.json();\r",
+							"//pm.environment.set(\"userId\", jsonData.userId)"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
